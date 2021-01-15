@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SpeedQuiz</string>
+    <string name="nom_joueur1">joueur1</string>
+    <string name="nom_joueur2">joueur 2</string>
+    <string name="score_joueur1">0</string>
+    <string name="score_joueur2">0</string>
+    <string name="questions_joueur1"> </string>
+    <string name="questions_joueur2"> </string>
+    <string name="bouton_invisible_menu">MENU</string>
+    <string name="bouton_invisible_rejouer">REJOUER</string>
+    <string name="bouton_jouer">JOUER</string>
+    <string name="hint_joueur1">Nom joueur1</string>
+    <string name="hint_joueur2">Nom joueur2</string>
+</resources>
