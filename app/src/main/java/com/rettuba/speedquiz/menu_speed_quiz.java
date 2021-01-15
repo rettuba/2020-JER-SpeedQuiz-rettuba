@@ -2,6 +2,7 @@ package com.rettuba.speedquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -51,7 +52,8 @@ public class menu_speed_quiz extends AppCompatActivity {
                     rempli_joueur1 = true;
                     if(rempli_joueur2) {
                         bouton_jouer.setEnabled(true);
-                        bouton_jouer.setBackgroundColor(Color.GREEN);
+                        bouton_jouer.setBackgroundColor(Color.BLUE);
+                        bouton_jouer.setVisibility(View.VISIBLE);
                     }
                 }else{
                     rempli_joueur1 = false;
@@ -78,7 +80,8 @@ public class menu_speed_quiz extends AppCompatActivity {
                     rempli_joueur2 = true;
                     if(rempli_joueur1) {
                         bouton_jouer.setEnabled(true);
-                        bouton_jouer.setBackgroundColor(Color.GREEN);
+                        bouton_jouer.setBackgroundColor(Color.BLUE);
+                        bouton_jouer.setVisibility(View.VISIBLE);
                     }
                 }else{
                     rempli_joueur2 = false;
@@ -90,6 +93,17 @@ public class menu_speed_quiz extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+
+        bouton_jouer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent resultatActivity = new Intent(menu_speed_quiz.this,MainActivity.class);
+                resultatActivity.putExtra("nom_joueur1",nom_joueur1.getText().toString());
+                resultatActivity.putExtra("nom_joueur2",nom_joueur2.getText().toString());
+                startActivity(resultatActivity);
             }
         });
     }

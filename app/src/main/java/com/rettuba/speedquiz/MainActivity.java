@@ -54,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         BT_Menu.setVisibility(View.GONE);
         BT_Rejouer.setVisibility(View.GONE);
 
+
+        Intent resultActivity = getIntent();
+        String nom_joueur1 = resultActivity.getStringExtra("nom_joueur1");
+        String nom_joueur2 = resultActivity.getStringExtra("nom_joueur2");
+
+        Nom_Joueur1.setText(nom_joueur1);
+        Nom_Joueur2.setText(nom_joueur2);
+
         /**Lors du clique sur le bouton d'un des deux joueurs, rendre l'autre grisé**/
         BT_Joueur1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 BT_Joueur2.setBackgroundColor(Color.GRAY);
             }
         });
+
         BT_Joueur2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
