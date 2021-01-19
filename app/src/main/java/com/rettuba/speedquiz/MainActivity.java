@@ -10,21 +10,34 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
-    /**Boutons centraux**/
+    /**
+     * Boutons centraux
+     **/
     private MaterialButton BT_Menu;
     private MaterialButton BT_Rejouer;
-    /**Boutons de jeux**/
+    /**
+     * Boutons de jeux
+     **/
     private MaterialButton BT_Joueur1;
     private MaterialButton BT_Joueur2;
-    /**Compteurs**/
+    /**
+     * Compteurs
+     **/
     private TextView Compteur_Joueur1;
     private TextView Compteur_Joueur2;
-    /**Noms**/
+    /**
+     * Noms
+     **/
     private TextView Nom_Joueur1;
     private TextView Nom_Joueur2;
-    /**Questions**/
+    /**
+     * Questions
+     **/
     private TextView Questions_Joueur1;
     private TextView Questions_Joueur2;
 
@@ -55,15 +68,17 @@ public class MainActivity extends AppCompatActivity {
         BT_Rejouer.setVisibility(View.GONE);
 
 
+        /**Récupérer le nom des joueurs**/
         Intent resultActivity = getIntent();
         String nom_joueur1 = resultActivity.getStringExtra("nom_joueur1");
         String nom_joueur2 = resultActivity.getStringExtra("nom_joueur2");
 
+        /**Afficher le nom des joueurs**/
         Nom_Joueur1.setText(nom_joueur1);
         Nom_Joueur2.setText(nom_joueur2);
 
         /**Lors du clique sur le bouton d'un des deux joueurs, rendre l'autre grisé**/
-        BT_Joueur1.setOnClickListener(new View.OnClickListener() {
+        /*BT_Joueur1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BT_Joueur2.setEnabled(false);
@@ -77,14 +92,37 @@ public class MainActivity extends AppCompatActivity {
                 BT_Joueur1.setEnabled(false);
                 BT_Joueur1.setBackgroundColor(Color.GRAY);
             }
+        });*/
+
+        ArrayList question = Source.listeDeQuestions();
+
+        BT_Joueur1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (question.size() == 0) {
+                    Questions_Joueur1.setText("NEIN NEIN NEIN !");
+                } else {
+                    Questions_Joueur1.setText(Source.questionAleatoire(question));
+                    Source.removeQuestion(question, Questions_Joueur1.getText().toString());
+                }
+                Questions_Joueur2.setText(Questions_Joueur1.getText());
+            }
         });
 
+        BT_Joueur2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-        }
-
-
-
+                if (question.size() == 0) {
+                    Questions_Joueur1.setText("NEIN NEIN NEIN !");
+                } else {
+                    Questions_Joueur1.setText(Source.questionAleatoire(question));
+                    Source.removeQuestion(question, Questions_Joueur1.getText().toString());
+                }
+                Questions_Joueur2.setText(Questions_Joueur1.getText());
+            }
+        });
     }
-
-
+}
