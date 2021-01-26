@@ -11,4 +11,5 @@
     <string name="bouton_jouer">JOUER</string>
     <string name="hint_joueur1">Nom joueur1</string>
     <string name="hint_joueur2">Nom joueur2</string>
+    <string name="bouton_nouveau_joueur">Nouveau Joueur</string>
 </resources>

@@ -2,6 +2,7 @@ package com.rettuba.speedquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,14 +15,16 @@ import com.google.android.material.button.MaterialButton;
 
 public class menu_speed_quiz extends AppCompatActivity {
 
-    /**Champs de saisie pour le nom des joueurs**/
-    private EditText nom_joueur1;
-    private EditText nom_joueur2;
+
+    /**Bouton nouveau joueur**/
+    private MaterialButton bouton_nouveau_joueur;
     /**Bouton jouer**/
     private MaterialButton bouton_jouer;
     /**Booleens**/
     boolean rempli_joueur1 = false;
     boolean rempli_joueur2 = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +32,28 @@ public class menu_speed_quiz extends AppCompatActivity {
         setContentView(R.layout.activity_menu_speed_quiz);
 
 
-
-        /**Champs de saisie pour le nom des joueurs**/
-        nom_joueur1 = findViewById(R.id.creer_joueur1);
-        nom_joueur2 = findViewById(R.id.creer_joueur2);
         /**Bouton jouer**/
-        bouton_jouer = findViewById(R.id.jouer);
-        bouton_jouer.setEnabled(false);
-        bouton_jouer.setVisibility(View.GONE);
+        bouton_jouer = findViewById(R.id.bt_jouer);
+        bouton_jouer.setEnabled(true);
+        bouton_jouer.setVisibility(View.VISIBLE);
 
+        /**Bouton nouveau joueur**/
+        bouton_nouveau_joueur = findViewById(R.id.bt_nouveau_joueur);
 
+        bouton_nouveau_joueur.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
 
-        nom_joueur1.addTextChangedListener(new TextWatcher() {
+                EditText ET_joueur1 = new EditText(menu_speed_quiz.this);
+                ET_joueur1.setHint("Nom joueur 1");
+                ET_joueur1.setTextSize(20);
+                ET_joueur1.setWidth(300);
+                ET_joueur1.setHeight(60);
+
+            }
+        });
+
+      /*nom_joueur1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -66,9 +79,9 @@ public class menu_speed_quiz extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
+        });*/
 
-        nom_joueur2.addTextChangedListener(new TextWatcher() {
+      /*nom_joueur2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -94,15 +107,13 @@ public class menu_speed_quiz extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });
+        });*/
 
-        bouton_jouer.setOnClickListener(new View.OnClickListener() {
+     bouton_jouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent resultatActivity = new Intent(menu_speed_quiz.this,MainActivity.class);
-                resultatActivity.putExtra("nom_joueur1",nom_joueur1.getText().toString());
-                resultatActivity.putExtra("nom_joueur2",nom_joueur2.getText().toString());
                 startActivity(resultatActivity);
             }
         });

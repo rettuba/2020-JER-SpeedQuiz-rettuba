@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
      **/
     private TextView Questions_Joueur1;
     private TextView Questions_Joueur2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+    QuestionManager maQuestion = new QuestionManager();
+
         ArrayList question = Source.listeDeQuestions();
 
         BT_Joueur1.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (question.size() == 0) {
-                    Questions_Joueur1.setText("NEIN NEIN NEIN !");
+                    Questions_Joueur1.setText("Fini ! Il est bien mon jeu hein :)");
                 } else {
-                    Questions_Joueur1.setText(Source.questionAleatoire(question));
-                    Source.removeQuestion(question, Questions_Joueur1.getText().toString());
+                    Questions_Joueur1.setText(maQuestion.getQuestion());
+                    QuestionManager.removeQuestionReponse(question,Source.listeDesReponses(), Questions_Joueur1.getText().toString());
                 }
                 Questions_Joueur2.setText(Questions_Joueur1.getText());
             }
@@ -116,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (question.size() == 0) {
-                    Questions_Joueur1.setText("NEIN NEIN NEIN !");
+                    Questions_Joueur1.setText("Fini ! Il est bien mon jeu hein :)");
                 } else {
-                    Questions_Joueur1.setText(Source.questionAleatoire(question));
-                    Source.removeQuestion(question, Questions_Joueur1.getText().toString());
+                    Questions_Joueur1.setText(maQuestion.getQuestion());
+                    QuestionManager.removeQuestionReponse(question,Source.listeDesReponses(), Questions_Joueur1.getText().toString());
                 }
                 Questions_Joueur2.setText(Questions_Joueur1.getText());
             }

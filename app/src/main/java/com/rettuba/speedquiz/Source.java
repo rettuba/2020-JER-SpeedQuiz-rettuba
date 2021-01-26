@@ -22,15 +22,19 @@ public class Source extends AppCompatActivity {
         return Question;
     }
 
-    public static String questionAleatoire(ArrayList listeDeQuestions){
+    public static ArrayList listeDesReponses() {
 
-        int phrase = (int) (Math.random() * listeDeQuestions.size());
-        String questionRandom = listeDeQuestions.get(phrase).toString();
-        return questionRandom;
+        ArrayList<Boolean> Reponse = new ArrayList<Boolean>();
+
+        Reponse.add(false);
+        Reponse.add(false);
+        Reponse.add(true);
+        Reponse.add(true);
+        Reponse.add(false);
+        Reponse.add(true);
+        Reponse.add(false);
+
+        return Reponse;
     }
 
-    public static void removeQuestion(ArrayList listeDeQuestions, String phraseARemove){
-        listeDeQuestions.remove(phraseARemove);
-
-    }
 }
