@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     QuestionManager maQuestion = new QuestionManager();
 
         ArrayList question = Source.listeDeQuestions();
+        ArrayList reponse = Source.listeDesReponses();
 
         BT_Joueur1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     Questions_Joueur1.setText("Fini ! Il est bien mon jeu hein :)");
                 } else {
                     Questions_Joueur1.setText(maQuestion.getQuestion());
-                    QuestionManager.removeQuestionReponse(question,Source.listeDesReponses(), Questions_Joueur1.getText().toString());
+                    QuestionManager.removeQuestionReponse(question,reponse,Questions_Joueur1.getText().toString());
                 }
                 Questions_Joueur2.setText(Questions_Joueur1.getText());
             }
@@ -116,12 +117,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 if (question.size() == 0) {
                     Questions_Joueur1.setText("Fini ! Il est bien mon jeu hein :)");
                 } else {
                     Questions_Joueur1.setText(maQuestion.getQuestion());
-                    QuestionManager.removeQuestionReponse(question,Source.listeDesReponses(), Questions_Joueur1.getText().toString());
+                    QuestionManager.removeQuestionReponse(question,reponse,Questions_Joueur1.getText().toString());
                 }
                 Questions_Joueur2.setText(Questions_Joueur1.getText());
             }

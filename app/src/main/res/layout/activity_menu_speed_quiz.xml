@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout_menu"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_nouveau_joueur"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_centerInParent="true"
             android:text="@string/bouton_nouveau_joueur"
-            android:layout_alignParentTop="true"
             android:textSize="25dp"
             android:layout_marginTop="100dp"
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_jouer"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
             android:text="@string/bouton_jouer"
             android:textSize="25dp"
             android:layout_marginBottom="200dp"
             />
-    </RelativeLayout>
 
 </LinearLayout>

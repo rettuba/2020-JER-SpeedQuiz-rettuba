@@ -12,6 +12,7 @@ public class QuestionManager extends AppCompatActivity {
     public static int numeroAleatoire() {
         int numeroAleatoire = (int) (Math.random() * Source.listeDeQuestions().size());
         return numeroAleatoire;
+
     }
 
     /**
@@ -34,6 +35,8 @@ public class QuestionManager extends AppCompatActivity {
     public static void removeQuestionReponse(ArrayList listeDeQuestions, ArrayList listeDeReponse, String phraseARemove) {
         listeDeQuestions.remove(phraseARemove);
         listeDeReponse.remove(phraseARemove);
+
+        System.out.println();
 
     }
 

@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -20,6 +23,8 @@ public class menu_speed_quiz extends AppCompatActivity {
     private MaterialButton bouton_nouveau_joueur;
     /**Bouton jouer**/
     private MaterialButton bouton_jouer;
+    /**Layout**/
+    private LinearLayout linearLayout_menu;
     /**Booleens**/
     boolean rempli_joueur1 = false;
     boolean rempli_joueur2 = false;
@@ -40,20 +45,51 @@ public class menu_speed_quiz extends AppCompatActivity {
         /**Bouton nouveau joueur**/
         bouton_nouveau_joueur = findViewById(R.id.bt_nouveau_joueur);
 
+        /**Layout**/
+        linearLayout_menu = findViewById(R.id.linearLayout_menu);
+
+        EditText ET_joueur1 = new EditText(this);
+        ET_joueur1.setHint("Nom joueur 1");
+        ET_joueur1.setTextSize(20);
+        ET_joueur1.setHeight(100);
+
+        EditText ET_joueur2 = new EditText(this);
+        ET_joueur2.setHint("Nom joueur 2");
+        ET_joueur2.setTextSize(20);
+        ET_joueur2.setHeight(100);
+
+
         bouton_nouveau_joueur.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
-                EditText ET_joueur1 = new EditText(menu_speed_quiz.this);
-                ET_joueur1.setHint("Nom joueur 1");
-                ET_joueur1.setTextSize(20);
-                ET_joueur1.setWidth(300);
-                ET_joueur1.setHeight(60);
+                linearLayout_menu.addView(ET_joueur1);
+                linearLayout_menu.addView(ET_joueur2);
+                ET_joueur2.setVisibility(View.GONE);
+
 
             }
         });
 
-      /*nom_joueur1.addTextChangedListener(new TextWatcher() {
+        ET_joueur1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                ET_joueur2.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+      ET_joueur1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -79,9 +115,9 @@ public class menu_speed_quiz extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });*/
+        });
 
-      /*nom_joueur2.addTextChangedListener(new TextWatcher() {
+      ET_joueur2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -107,7 +143,7 @@ public class menu_speed_quiz extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-        });*/
+        });
 
      bouton_jouer.setOnClickListener(new View.OnClickListener() {
             @Override
