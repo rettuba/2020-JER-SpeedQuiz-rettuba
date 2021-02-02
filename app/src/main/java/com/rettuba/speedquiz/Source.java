@@ -24,15 +24,15 @@ public class Source extends AppCompatActivity {
 
     public static ArrayList listeDesReponses() {
 
-        ArrayList<Boolean> Reponse = new ArrayList<Boolean>();
+        ArrayList<Integer> Reponse = new ArrayList<Integer>();
 
-        Reponse.add(false);
-        Reponse.add(false);
-        Reponse.add(true);
-        Reponse.add(true);
-        Reponse.add(false);
-        Reponse.add(true);
-        Reponse.add(false);
+        Reponse.add(0);
+        Reponse.add(0);
+        Reponse.add(1);
+        Reponse.add(1);
+        Reponse.add(0);
+        Reponse.add(1);
+        Reponse.add(0);
 
 
         return Reponse;

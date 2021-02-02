@@ -18,7 +18,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class menu_speed_quiz extends AppCompatActivity {
 
-
     /**Bouton nouveau joueur**/
     private MaterialButton bouton_nouveau_joueur;
     /**Bouton jouer**/
@@ -30,7 +29,6 @@ public class menu_speed_quiz extends AppCompatActivity {
     boolean rempli_joueur2 = false;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +37,8 @@ public class menu_speed_quiz extends AppCompatActivity {
 
         /**Bouton jouer**/
         bouton_jouer = findViewById(R.id.bt_jouer);
-        bouton_jouer.setEnabled(true);
-        bouton_jouer.setVisibility(View.VISIBLE);
+        bouton_jouer.setEnabled(false);
+        bouton_jouer.setVisibility(View.GONE);
 
         /**Bouton nouveau joueur**/
         bouton_nouveau_joueur = findViewById(R.id.bt_nouveau_joueur);
@@ -51,12 +49,12 @@ public class menu_speed_quiz extends AppCompatActivity {
         EditText ET_joueur1 = new EditText(this);
         ET_joueur1.setHint("Nom joueur 1");
         ET_joueur1.setTextSize(20);
-        ET_joueur1.setHeight(100);
+        ET_joueur1.setHeight(230);
 
         EditText ET_joueur2 = new EditText(this);
         ET_joueur2.setHint("Nom joueur 2");
         ET_joueur2.setTextSize(20);
-        ET_joueur2.setHeight(100);
+        ET_joueur2.setHeight(230);
 
 
         bouton_nouveau_joueur.setOnClickListener(new View.OnClickListener(){
@@ -66,7 +64,7 @@ public class menu_speed_quiz extends AppCompatActivity {
                 linearLayout_menu.addView(ET_joueur1);
                 linearLayout_menu.addView(ET_joueur2);
                 ET_joueur2.setVisibility(View.GONE);
-
+                bouton_nouveau_joueur.setEnabled(false);
 
             }
         });
@@ -101,13 +99,11 @@ public class menu_speed_quiz extends AppCompatActivity {
                     rempli_joueur1 = true;
                     if(rempli_joueur2) {
                         bouton_jouer.setEnabled(true);
-                        bouton_jouer.setBackgroundColor(Color.BLUE);
                         bouton_jouer.setVisibility(View.VISIBLE);
                     }
                 }else{
                     rempli_joueur1 = false;
                     bouton_jouer.setEnabled(false);
-                    bouton_jouer.setBackgroundColor(Color.GRAY);
                 }
 
             }
@@ -129,13 +125,11 @@ public class menu_speed_quiz extends AppCompatActivity {
                     rempli_joueur2 = true;
                     if(rempli_joueur1) {
                         bouton_jouer.setEnabled(true);
-                        bouton_jouer.setBackgroundColor(Color.BLUE);
                         bouton_jouer.setVisibility(View.VISIBLE);
                     }
                 }else{
                     rempli_joueur2 = false;
                     bouton_jouer.setEnabled(false);
-                    bouton_jouer.setBackgroundColor(Color.GRAY);
                 }
 
             }
@@ -145,11 +139,15 @@ public class menu_speed_quiz extends AppCompatActivity {
             }
         });
 
+
+
      bouton_jouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent resultatActivity = new Intent(menu_speed_quiz.this,MainActivity.class);
+                resultatActivity.putExtra("nom_joueur1",ET_joueur1.getText().toString());
+                resultatActivity.putExtra("nom_joueur2",ET_joueur2.getText().toString());
                 startActivity(resultatActivity);
             }
         });

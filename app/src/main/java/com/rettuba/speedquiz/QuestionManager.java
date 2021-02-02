@@ -1,7 +1,6 @@
 package com.rettuba.speedquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ComponentActivity;
 
 import java.util.ArrayList;
 
@@ -24,9 +23,9 @@ public class QuestionManager extends AppCompatActivity {
         return questionRandom;
     }
 
-    public static boolean reponseAleatoire(ArrayList listeReponse) {
+    public static int reponseAleatoire(ArrayList listeReponse) {
 
-        return (boolean) listeReponse.get(numeroAleatoire());
+        return (int) listeReponse.get(numeroAleatoire());
     }
 
     /**
@@ -40,13 +39,20 @@ public class QuestionManager extends AppCompatActivity {
 
     }
 
+    public boolean isLastQuestion(ArrayList<Question> questionList){
+        if(questionList.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
     public String getQuestion() {
         maQuestion.setQuestion(questionAleatoire(Source.listeDeQuestions()));
         return maQuestion.getQuestion();
 
     }
 
-    public boolean getReponse() {
+    public int getReponse() {
         maQuestion.setReponse(reponseAleatoire(Source.listeDesReponses()));
         return maQuestion.getReponse();
 
