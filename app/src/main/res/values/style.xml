@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.speedQuiz" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue_speedQuiz</item>
+    </style>
+    <style name="Theme.speedQuiz.dark" parent="Theme.speedQuiz">
+        <item name="backgroundColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="Theme.speedQuiz.light" parent="Theme.speedQuiz">
+        <item name="backgroundColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

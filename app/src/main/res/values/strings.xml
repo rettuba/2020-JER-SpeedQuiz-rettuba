@@ -12,4 +12,6 @@
     <string name="hint_joueur1">Nom joueur1</string>
     <string name="hint_joueur2">Nom joueur2</string>
     <string name="bouton_nouveau_joueur">Nouveau Joueur</string>
+    <string name="action_configuration">Configuration</string>
+    <string name="action_about">About</string>
 </resources>

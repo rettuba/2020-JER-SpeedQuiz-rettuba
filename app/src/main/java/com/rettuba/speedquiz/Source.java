@@ -5,37 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Source extends AppCompatActivity {
+public class Source {
 
-    public static ArrayList listeDeQuestions() {
+    public static ArrayList<Question> listeDeQuestions(ArrayList<Question> liste) {
 
-        ArrayList<String> Question = new ArrayList<String>();
+        liste.add(new Question("La racine de 145 est un nombre entier",false));                     /*FAUX*/
+        liste.add(new Question("La suisse a 23 cantons",false));                                    /*FAUX*/
+        liste.add(new Question("La suisse a plus de 8 millions d'habitants (année : 2020)",true)); /*VRAI*/
+        liste.add(new Question("La Russie est le plus grand pays au monde",true));                 /*Vrai*/
+        liste.add(new Question("L'Afrique est un pays",false));                                     /*Faux*/
+        liste.add(new Question("La Lune est un satellite naturel",true));                          /*Vrai*/
+        liste.add(new Question("La terre a moins d'un milliard d'années",false));                   /*FAUX*/
 
-        Question.add("La racine de 145 est un nombre entier");                     /*FAUX*/
-        Question.add("La suisse a 23 cantons");                                    /*FAUX*/
-        Question.add("La suisse a plus de 8 millions d'habitants (année : 2020)"); /*VRAI*/
-        Question.add("La Russie est le plus grand pays au monde");                 /*Vrai*/
-        Question.add("L'Afrique est un pays");                                     /*Faux*/
-        Question.add("La Lune est un satellite naturel");                          /*Vrai*/
-        Question.add("La terre a moins d'un milliard d'années");                   /*FAUX*/
-
-        return Question;
+        return liste;
     }
 
-    public static ArrayList listeDesReponses() {
-
-        ArrayList<Integer> Reponse = new ArrayList<Integer>();
-
-        Reponse.add(0);
-        Reponse.add(0);
-        Reponse.add(1);
-        Reponse.add(1);
-        Reponse.add(0);
-        Reponse.add(1);
-        Reponse.add(0);
-
-
-        return Reponse;
-    }
 
 }

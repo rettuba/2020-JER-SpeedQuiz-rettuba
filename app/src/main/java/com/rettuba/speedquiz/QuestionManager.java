@@ -1,60 +1,55 @@
 package com.rettuba.speedquiz;
 
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class QuestionManager extends AppCompatActivity {
+public class QuestionManager {
 
-    Question maQuestion = new Question();
+    private ArrayList<Question> questionList = new ArrayList<>();
 
-    public static int numeroAleatoire() {
-        int numeroAleatoire = (int) (Math.random() * Source.listeDeQuestions().size());
-        return numeroAleatoire;
+    public QuestionManager(){
+        questionList = Source.listeDeQuestions(questionList);
+    }
 
+    public ArrayList<Question> getQuestionList(){
+
+        return questionList;
+    }
+
+    public int numeroAleatoire(ArrayList<Question> questionList) {
+
+        Random random = new Random();
+        return random.nextInt(questionList.size());
     }
 
     /**
      * Prendre une question aléatoirement dans la liste
      */
-    public static String questionAleatoire(ArrayList listeDeQuestions) {
+    public Question questionAleatoire() {
 
-        String questionRandom = listeDeQuestions.get(numeroAleatoire()).toString();
-        return questionRandom;
-    }
+        int randomIndex = numeroAleatoire(questionList);
+        Question question = questionList.get(randomIndex);
 
-    public static int reponseAleatoire(ArrayList listeReponse) {
+        questionList.remove(randomIndex);
 
-        return (int) listeReponse.get(numeroAleatoire());
+
+        return question;
+
     }
 
     /**
-     * Enlever la question posée de la liste (pour éviter de poser 2 fois la même question
-     **/
-    public static void removeQuestionReponse(ArrayList listeDeQuestions, ArrayList listeDeReponse, String phraseARemove) {
-        listeDeQuestions.remove(phraseARemove);
-        listeDeReponse.remove(phraseARemove);
-
-        System.out.println();
-
-    }
-
+     * Vérifier si la liste est vide
+     * @param questionList liste de questions
+     * @return vrai si la liste est vide sinon faux
+     */
     public boolean isLastQuestion(ArrayList<Question> questionList){
-        if(questionList.isEmpty()){
-            return true;
-        }
-        return false;
-    }
-
-    public String getQuestion() {
-        maQuestion.setQuestion(questionAleatoire(Source.listeDeQuestions()));
-        return maQuestion.getQuestion();
+        return questionList.isEmpty();
 
     }
 
-    public int getReponse() {
-        maQuestion.setReponse(reponseAleatoire(Source.listeDesReponses()));
-        return maQuestion.getReponse();
-
-    }
 }
