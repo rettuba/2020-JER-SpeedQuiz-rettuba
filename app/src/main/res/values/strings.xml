@@ -14,4 +14,11 @@
     <string name="bouton_nouveau_joueur">Nouveau Joueur</string>
     <string name="action_configuration">Configuration</string>
     <string name="action_about">About</string>
+    <string name="activer_mode_nuit">Activer le mode nuit</string>
+    <string name="vitesse_question">Temps entre chaque question : </string>
+    <string name="enregister_et_quitter">Enregistrer et quitter</string>
+    <string name="About">À propos</string>
+    <string name="quitter">Quitter</string>
+    <string name="quitter_sans_enregistrer">Quitter sans enregister</string>
+    <string name="Texte_explicatif_about">SpeedQuiz est une application qui se joue en local à deux joueurs, le but étant de cliquer le plus rapidement sur le bouton si l`affirmation nous semble correcte</string>
 </resources>

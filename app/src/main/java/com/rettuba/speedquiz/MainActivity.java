@@ -63,53 +63,64 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Modifie le thème selon l'option choisie en configuration
+        if (configuration.getValeurSwitch()){
+            setTheme(R.style.Theme_SpeedQuiz_dark);
+        }else{
+            setTheme(R.style.Theme_SpeedQuiz_light);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        /*Boutons centraux*/
+        // Boutons centraux
         BT_Menu = findViewById(R.id.bt_menu);
         BT_Rejouer = findViewById(R.id.bt_rejouer);
-        /*Boutons de jeux*/
+        // Boutons de jeux
         BT_Joueur1 = findViewById(R.id.bt_joueur1);
         BT_Joueur2 = findViewById(R.id.bt_joueur2);
-        /*Compteurs*/
+        // Compteurs des joueurs
         Compteur_Joueur1 = findViewById(R.id.compteur_joueur1);
         Compteur_Joueur2 = findViewById(R.id.compteur_joueur2);
-        /*Noms*/
+        // Noms des joueurs
         Nom_Joueur1 = findViewById(R.id.nom_joueur1);
         Nom_Joueur2 = findViewById(R.id.nom_joueur2);
-        /*Questions*/
+        // Questions des joueurs
         Questions_Joueur1 = findViewById(R.id.questions_joueur1);
         Questions_Joueur2 = findViewById(R.id.questions_joueur2);
 
-        /*Rendre les deux boutons "Menu" et "Rejouer" invisible*/
+        // Rendre les deux boutons "Menu" et "Rejouer" invisible
         BT_Menu.setVisibility(View.GONE);
         BT_Rejouer.setVisibility(View.GONE);
 
-        /*Récupérer le nom des joueurs*/
+        // Récupérer le nom des joueurs
         Intent resultActivity = getIntent();
         String nom_joueur1 = resultActivity.getStringExtra("nom_joueur1");
         String nom_joueur2 = resultActivity.getStringExtra("nom_joueur2");
 
-        /*Afficher le nom des joueurs*/
+        // Afficher le nom des joueurs
         Nom_Joueur1.setText(nom_joueur1);
         Nom_Joueur2.setText(nom_joueur2);
 
-        questionManager = new QuestionManager();
+        questionManager = new QuestionManager(this);
 
     }
 
+    /**
+     * Lorsqu'on revient sur l'application
+     */
     @Override
     protected void onResume() {
         super.onResume();
 
+        /**
+         * Sur le clic du bouton du joueur 1, rendre le bouton adverse bloqué et gérer le point
+         */
         BT_Joueur1.setOnClickListener((v) -> {
             if (!buttonDoesNothing) {
                 Questions_Joueur2.setText("Bloqué");
                 BT_Joueur2.setEnabled(false);
                 Compteur_Joueur1.setText("");
-                if (question.getReponse()) {
+                if (question.getReponse() == 1) {
                     compteurJoueur1 += 1;
                     buttonDoesNothing = true;
                 } else {
@@ -121,12 +132,15 @@ public class MainActivity extends AppCompatActivity {
                 Compteur_Joueur1.setText("" + compteurJoueur1);
             }
         });
+        /**
+         * Sur le clic du bouton du joueur 2, rendre le bouton adverse bloqué et gérer le point
+         */
         BT_Joueur2.setOnClickListener((v) -> {
             if (!buttonDoesNothing) {
                 Questions_Joueur1.setText("Bloqué");
                 BT_Joueur1.setEnabled(false);
                 Compteur_Joueur2.setText("");
-                if (question.getReponse()) {
+                if (question.getReponse() == 1) {
                     compteurJoueur2 += 1;
                     buttonDoesNothing = true;
                 } else {
@@ -138,16 +152,24 @@ public class MainActivity extends AppCompatActivity {
                 Compteur_Joueur2.setText("" + compteurJoueur2);
             }
         });
+
+        /**
+         * Sur le clic du bouton Rejouer, commencer une nouvelle partie
+         */
         BT_Rejouer.setOnClickListener((v) -> {
             restartNewGame(questionRunnable);
         });
+
+        /**
+         * Sur le clic du bouton Menu, revenir au menu principal
+         */
         BT_Menu.setOnClickListener((v) -> {
             Intent startActivity = new Intent(MainActivity.this, menu_speed_quiz.class);
             startActivity(startActivity);
             finish();
         });
 
-        startNewGame();
+        startNewGame(); // Commencer une partie
     }
 
     /**
@@ -161,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
      * Gerer l'affichage des questions et du score final
      */
     private void startQuestionIterative() {
+        int delais = configuration.getValeurSeekBar() * 1000;
         buttonDoesNothing = false;
         handler = new Handler();
         questionRunnable = new Runnable() {
@@ -176,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     buttonDoesNothing = false;
                     unlockPlayer();
                     startNewQuestionList();
-                    handler.postDelayed(this, 2000);
+                    handler.postDelayed(this, delais);
                 }
             }
         };
@@ -235,11 +258,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Commencer une nouvelle partie
-     *
      * @param questionRunnable
      */
     private void restartNewGame(Runnable questionRunnable) {
-        questionManager = new QuestionManager();
+        questionManager = new QuestionManager(this);
         hideMenuButton();
         resetScore();
         startNewGame();
@@ -278,6 +300,5 @@ public class MainActivity extends AppCompatActivity {
         BT_Joueur1.setEnabled(true);
         BT_Joueur2.setEnabled(true);
     }
-
 
 }

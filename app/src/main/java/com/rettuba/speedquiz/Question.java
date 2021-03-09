@@ -9,25 +9,31 @@ import java.util.ArrayList;
 public class Question {
 
     private String question;
-    private Boolean reponse;
+    private int reponse;
     public Question(){}
 
+
     /**
-     * @param question
-     * @param reponse
+     * Créer un objet Question
+     * @param cursor
      */
-    public Question(String question, Boolean reponse){
-        this.question = question;
-        this.reponse = reponse;
+    public Question(Cursor cursor){
+        question = cursor.getString(cursor.getColumnIndex("question"));
+        reponse = cursor.getInt(cursor.getColumnIndex("reponse"));
     }
 
-
+    /**
+     * @return une question
+     */
     public  String getQuestion() {
         return question;
 
     }
 
-    public Boolean getReponse() {
+    /**
+     * @return la reponse de la question
+     */
+    public int getReponse() {
         return reponse;
 
     }

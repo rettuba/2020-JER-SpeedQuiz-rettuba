@@ -10,4 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue_speedQuiz">#3C64B9</color>
     <color name="blue_speedQuiz_variant">#375BA9</color>
+    <color name="grey">#aaa</color>
+    <color name="light_grey">#dfdfdf</color>
+    <color name="dark_grey">#222</color>
 </resources>
