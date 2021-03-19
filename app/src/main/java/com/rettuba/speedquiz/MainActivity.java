@@ -25,29 +25,19 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * Boutons centraux
-     **/
+    // Boutons centraux
     private MaterialButton BT_Menu;
     private MaterialButton BT_Rejouer;
-    /**
-     * Boutons de jeux
-     **/
+    // Boutons de jeux
     private MaterialButton BT_Joueur1;
     private MaterialButton BT_Joueur2;
-    /**
-     * Compteurs
-     **/
+    // Compteurs
     private TextView Compteur_Joueur1;
     private TextView Compteur_Joueur2;
-    /**
-     * Noms
-     **/
+    // Noms
     private TextView Nom_Joueur1;
     private TextView Nom_Joueur2;
-    /**
-     * Questions
-     **/
+    // Questions
     private TextView Questions_Joueur1;
     private TextView Questions_Joueur2;
 
@@ -75,15 +65,19 @@ public class MainActivity extends AppCompatActivity {
         // Boutons centraux
         BT_Menu = findViewById(R.id.bt_menu);
         BT_Rejouer = findViewById(R.id.bt_rejouer);
+        
         // Boutons de jeux
         BT_Joueur1 = findViewById(R.id.bt_joueur1);
         BT_Joueur2 = findViewById(R.id.bt_joueur2);
+
         // Compteurs des joueurs
         Compteur_Joueur1 = findViewById(R.id.compteur_joueur1);
         Compteur_Joueur2 = findViewById(R.id.compteur_joueur2);
+
         // Noms des joueurs
         Nom_Joueur1 = findViewById(R.id.nom_joueur1);
         Nom_Joueur2 = findViewById(R.id.nom_joueur2);
+
         // Questions des joueurs
         Questions_Joueur1 = findViewById(R.id.questions_joueur1);
         Questions_Joueur2 = findViewById(R.id.questions_joueur2);
